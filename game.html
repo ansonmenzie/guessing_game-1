@@ -1,14 +1,14 @@
 <script type="text/javascript">
 var guess, answer, message;
 
-//square brackets refer to the index
 guess = ['How many dogs do I have? 1 or 2?', 'Is my dog 5 or 11 years old?', 'Is my dog a pure bred? Y/N', 'Is Finn\'s favorite toy a bone? Y/N', 'Is Finn a boy or a girl?'];
 answer = [1, 11, "N", "N", "GIRL"];
 
+//this function creates error alert when garbage asnwer is entered by user
 function errorAlert() {
   alert("You didn\'t enter an allowable answer.");
 }
-
+// this function checks for garbage answers.  if garbage asnwer gives error alert and rewinds i to reask question.
 function checkResponse(index, userinput) {
 
   switch(index) {
@@ -56,7 +56,7 @@ function checkResponse(index, userinput) {
       break;
   }
 }
-
+//this function checks whether user answer is correct
 function checkCorrect (userinput, correctAnswer) {
     if (userinput == correctAnswer) {
     console.log("correct");
@@ -68,12 +68,17 @@ function checkCorrect (userinput, correctAnswer) {
     alert(message);
 }
 
-for (var i = 0; i < guess.length; i++) {
-  var response = prompt(guess[i]);
-  var response = response.toUpperCase();
-  if (checkResponse(i, response)!= false) {
-    checkCorrect(response, answer[i]);
+//this is the game. cycles through all questions in guess arrray. calls all functions above.
+//existing bug in game - if garbage answer provided on last question, doesnt rewind to ask for another answer.
+function playGame() {
+  for (var i = 0; i < guess.length; i++) {
+    var response = prompt(guess[i]);
+    var response = response.toUpperCase();
+    if (checkResponse(i, response)!= false) {
+      checkCorrect(response, answer[i]);
+    }
   }
 }
+playGame();
 
 </script>

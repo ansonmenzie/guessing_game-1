@@ -1,11 +1,10 @@
 My game has five questions about my dog Finn.
 The five questions are stored in an array.
 A second array stores the answers to each question.
-Using a for loop, the user is prompted to respond to each question.
-(NEW!) if response is not one of the allowable choices; error message displayed and question is re-asked.
-If the response matches the answer at the same index, the answer is correct and a correct message is displayed.
-If not, an incorrect message is displayed.
 
-Differences b/w enhance and master:
-- the feature shown as (NEW!) above is in enhance
-- almost every feature is stored as a function
+Using a for loop, the user is prompted to respond to each question.
+The for loop calls a few functions.  the functions do the following:
+1. check for garbage answers and throw an alert when garbage is entered.  Also, rewinds loop by 1 so question is reasked.
+2. checks (non garbage) answers for whether they are correct.  if asnwer is correct, correct message is displayed; if not, incorrect message is displayed.  The way it checks for a correct answer is matching the index of the question array with the index of the answer array and check for equality.
+
+Existing bug in game - if garbage answer provided on last question, doesnt rewind to ask for another answer.
