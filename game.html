@@ -2,24 +2,78 @@
 var guess, answer, message;
 
 //square brackets refer to the index
-guess = ['How many dogs do I have?', 'Is my dog 5 or 11?', 'Is my dog a pure bred? Y/N', 'Is Finn\'s favorite toy a bone? Y/N', 'Is Finn a boy or a girl?'];
+guess = ['How many dogs do I have? 1 or 2?', 'Is my dog 5 or 11 years old?', 'Is my dog a pure bred? Y/N', 'Is Finn\'s favorite toy a bone? Y/N', 'Is Finn a boy or a girl?'];
 answer = [1, 11, "N", "N", "GIRL"];
+
+function errorAlert() {
+  alert("You didn\'t enter an allowable answer.");
+}
+
+function checkResponse(index, userinput) {
+
+  switch(index) {
+    case 0:
+      if (userinput != 1 && userinput != 2) {
+        errorAlert();
+        i = i - 1;
+        return false;
+      }
+      break;
+
+    case 1:
+      if (userinput != 5 && userinput !=11) {
+        errorAlert();
+        i = i - 1;
+        return false;
+      }
+      break;
+
+    case 2:
+      if (userinput != "Y" && userinput != "N") {
+        errorAlert();
+        i = i - 1;
+        return false;
+      }
+      break;
+
+    case 3:
+      if (userinput != "Y" && userinput != "N") {
+        errorAlert();
+        i = i - 1;
+        return false;
+      }
+      break;
+
+    case 4:
+      if (userinput != "BOY" && userinput !="GIRL") {
+        errorAlert();
+        i = i - 1;
+        return false;
+      }
+      break;
+
+    default:
+      break;
+  }
+}
+
+function checkCorrect (userinput, correctAnswer) {
+    if (userinput == correctAnswer) {
+    console.log("correct");
+    message = "Yes! That's correct! You seem to know Finn.";
+    } else {
+      console.log("incorrect");
+      message = "Nope.  You don't know that about Finn. Spend more time with her.";
+    }
+    alert(message);
+}
 
 for (var i = 0; i < guess.length; i++) {
   var response = prompt(guess[i]);
   var response = response.toUpperCase();
-  console.log('The user said ' + response);
-  console.log('The right answer ' + answer[i]);
-  if (response == answer[i]) {
-    console.log("correct");
-    message = "Yes! That's correct! You seem to know Finn.";
-  } else {
-    console.log("incorrect");
-    message = "Nope.  You don't know that about Finn. Spend more time with her.";
+  if (checkResponse(i, response)!= false) {
+    checkCorrect(response, answer[i]);
   }
-  alert(message);
-  console.log(i);
-
 }
 
 </script>
