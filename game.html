@@ -1,84 +1,96 @@
 <script type="text/javascript">
-var guess, answer, message;
 
-guess = ['How many dogs do I have? 1 or 2?', 'Is my dog 5 or 11 years old?', 'Is my dog a pure bred? Y/N', 'Is Finn\'s favorite toy a bone? Y/N', 'Is Finn a boy or a girl?'];
-answer = [1, 11, "N", "N", "GIRL"];
+var Game = function(guess, answer) {
+  this.guess = guess;
+  this.answer = answer;
+  this.errorAlert = function() {
+    alert("You didn\'t enter an allowable answer.");
+  };
+
+  this.checkResponse = function(index, userinput) {
+    switch(index) {
+        case 0:
+          if (userinput != 1 && userinput != 2) {
+            this.errorAlert();
+            i = i - 1;
+            return false;
+          }
+          break;
+
+        case 1:
+          if (userinput != 5 && userinput !=11) {
+            this.errorAlert();
+            i = i - 1;
+            return false;
+          }
+          break;
+
+        case 2:
+          if (userinput != "Y" && userinput != "N") {
+            this.errorAlert();
+            i = i - 1;
+            return false;
+          }
+          break;
+
+        case 3:
+          if (userinput != "Y" && userinput != "N") {
+            this.errorAlert();
+            i = i - 1;
+            return false;
+          }
+          break;
+
+        case 4:
+          if (userinput != "BOY" && userinput !="GIRL") {
+            this.errorAlert();
+            i = i - 1;
+            return false;
+          }
+          break;
+
+        default:
+          break;
+      }
+    }
+    this.checkCorrect = function(userAnswer, correctAnswer) {
+      if (userAnswer == correctAnswer) {
+        console.log("correct");
+        message = "Yes! That's correct! You seem to know Finn.";
+      } else {
+        console.log("incorrect");
+        message = "Nope.  You don't know that about Finn. Spend more time with her.";
+      }
+      alert(message);
+      }
+    this.playGame = function() {
+      for (var i = 0; i < guess.length; i++) {
+        var response = prompt(guess[i]);
+        var response = response.toUpperCase();
+        if (this.checkResponse(i, response) != false) {
+          this.checkCorrect(response, answer[i]);
+          }
+        }
+      }
+    }
+var game1 = new Game (['How many dogs do I have? 1 or 2?', 'Is my dog 5 or 11 years old?', 'Is my dog a pure bred? Y/N', 'Is Finn\'s favorite toy a bone? Y/N', 'Is Finn a boy or a girl?'], [1, 11, "N", "N", "GIRL"]);
+  game1.playGame();
+
+
+
+
+
 
 //this function creates error alert when garbage asnwer is entered by user
-function errorAlert() {
-  alert("You didn\'t enter an allowable answer.");
-}
+
 // this function checks for garbage answers.  if garbage asnwer gives error alert and rewinds i to reask question.
-function checkResponse(index, userinput) {
 
-  switch(index) {
-    case 0:
-      if (userinput != 1 && userinput != 2) {
-        errorAlert();
-        i = i - 1;
-        return false;
-      }
-      break;
-
-    case 1:
-      if (userinput != 5 && userinput !=11) {
-        errorAlert();
-        i = i - 1;
-        return false;
-      }
-      break;
-
-    case 2:
-      if (userinput != "Y" && userinput != "N") {
-        errorAlert();
-        i = i - 1;
-        return false;
-      }
-      break;
-
-    case 3:
-      if (userinput != "Y" && userinput != "N") {
-        errorAlert();
-        i = i - 1;
-        return false;
-      }
-      break;
-
-    case 4:
-      if (userinput != "BOY" && userinput !="GIRL") {
-        errorAlert();
-        i = i - 1;
-        return false;
-      }
-      break;
-
-    default:
-      break;
-  }
-}
 //this function checks whether user answer is correct
-function checkCorrect (userinput, correctAnswer) {
-    if (userinput == correctAnswer) {
-    console.log("correct");
-    message = "Yes! That's correct! You seem to know Finn.";
-    } else {
-      console.log("incorrect");
-      message = "Nope.  You don't know that about Finn. Spend more time with her.";
-    }
-    alert(message);
-}
+
+
+
 
 //this is the game. cycles through all questions in guess arrray. calls all functions above.
 //existing bug in game - if garbage answer provided on last question, doesnt rewind to ask for another answer.
-function playGame() {
-  for (var i = 0; i < guess.length; i++) {
-    var response = prompt(guess[i]);
-    var response = response.toUpperCase();
-    if (checkResponse(i, response)!= false) {
-      checkCorrect(response, answer[i]);
-    }
-  }
-}
-playGame();
 
-</script>
+  </script>
